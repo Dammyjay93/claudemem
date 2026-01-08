@@ -1,6 +1,7 @@
 {
   "name": "claudemem-marketplace",
   "description": "ClaudeMem plugin marketplace",
+  "version": "1.0.0",
   "owner": {
     "name": "Damola Akinleye"
   },
@@ -8,7 +9,8 @@
     {
       "name": "claudemem",
       "description": "Persistent memory for Claude Code. Remembers your projects, tasks, and decisions across sessions.",
-      "source": "."
+      "source": "./plugins/claudemem",
+      "category": "productivity"
     }
   ]
 }
