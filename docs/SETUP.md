@@ -5,7 +5,7 @@
 In Claude Code:
 
 ```
-/plugin marketplace add yourusername/claudemem
+/plugin marketplace add Dammyjay93/claudemem
 /claudemem:setup
 ```
 
@@ -88,7 +88,7 @@ mkdir -p ~/Vault/{Projects,Sessions,.schemas}
 ### 2. Copy Files from Repository
 
 ```bash
-git clone https://github.com/yourusername/claudemem.git
+git clone https://github.com/Dammyjay93/claudemem.git
 cp claudemem/vault/_manifest.md ~/Vault/
 cp claudemem/vault/.schemas/*.md ~/Vault/.schemas/
 ```

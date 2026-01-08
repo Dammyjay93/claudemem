@@ -32,7 +32,7 @@ Claude: "Resuming your project. Task: Set up database. Continue?"
 ## Installation
 
 ```
-/plugin marketplace add yourusername/claudemem
+/plugin marketplace add Dammyjay93/claudemem
 /claudemem:setup
 ```
 
