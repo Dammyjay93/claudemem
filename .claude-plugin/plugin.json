@@ -1,0 +1,11 @@
+{
+  "name": "claudemem",
+  "description": "AI-native project management for Claude Code. Persistent memory, PRD-to-tasks workflow, and session continuity.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Damola Akinleye"
+  },
+  "repository": "https://github.com/damoladev/claudemem",
+  "license": "MIT",
+  "keywords": ["memory", "project-management", "productivity", "sessions", "tasks"]
+}
