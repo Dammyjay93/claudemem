@@ -53,9 +53,11 @@ If you already use Linear and want Claude to interact with it, use the Linear MC
 
 ## Installation
 
+Inside Claude Code, run:
+
 ```
-claude plugin marketplace add Dammyjay93/claudemem
-claude plugin install claudemem@claudemem-marketplace
+/plugin marketplace add Dammyjay93/claudemem
+/plugin install claudemem
 ```
 
 Then run `/claudemem:setup` to create your vault structure.
@@ -63,11 +65,10 @@ Then run `/claudemem:setup` to create your vault structure.
 ## Updating
 
 ```
-claude plugin marketplace update claudemem-marketplace
-claude plugin update claudemem@claudemem-marketplace
+/plugin marketplace update claudemem-marketplace
 ```
 
-Restart Claude Code after updating.
+Changes take effect immediately—no restart needed.
 
 ---
 
@@ -77,17 +78,17 @@ ClaudeMem stores everything in `~/Vault/`:
 
 ```
 ~/Vault/
-├── _manifest.md                # Project registry, recent sessions, last-touched hint
+├── _manifest.md                # Project registry, last-touched hint
 ├── Projects/
 │   └── my-project/
-│       ├── _index.md           # Project overview + ACTIVE STATE (epic/task)
+│       ├── _index.md           # Active state + Active Stances + Key Decisions
 │       ├── PRD.md              # Requirements (generated from conversation)
-│       ├── Decisions.md        # Architecture decisions with timestamps
+│       ├── rules.md            # Enforced constraints (Product/UI/Engineering)
 │       └── Epics/
 │           ├── 01-foundation.md
-│           └── 02-features.md  # Tasks as checkboxes with status
+│           └── 02-features.md  # Tasks + Approach section
 └── Sessions/
-    └── 2026-01-08.md           # What happened today
+    └── 2026-01-08-project.md   # What happened today (full context)
 ```
 
 When Claude starts a session, it reads `_manifest.md` for the project list and a hint about which project you last touched. The actual active task lives in each project's `_index.md`.
