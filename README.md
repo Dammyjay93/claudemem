@@ -19,6 +19,7 @@
 
 <p align="center">
   <a href="#quick-start">Quick Start</a> •
+  <a href="#key-features">Key Features</a> •
   <a href="#how-it-works">How It Works</a> •
   <a href="#commands">Commands</a> •
   <a href="#comparison">Comparison</a> •
@@ -26,7 +27,7 @@
 </p>
 
 <p align="center">
-  ClaudePM organizes your conversations into structured projects with epics and tasks, then tracks your progress across sessions. When you start a new session, Claude loads your project context and knows exactly where you left off.
+  ClaudePM turns your conversations into structured projects by automatically generating PRDs, epics, and tasks from what you discuss. It tracks your progress and captures decisions as you work, making them available to future sessions. This enables Claude to maintain continuity of your project state — knowing your current task, past decisions, and what's next — even after sessions end.
 </p>
 
 ---
@@ -41,44 +42,53 @@
 
 Restart Claude Code. Your project context will load automatically in future sessions.
 
-**Key Features:**
+---
 
-- **Conversation to Structure** — Discuss what you want to build, run `/claudepm:plan`, get organized epics and tasks
-- **Session Continuity** — Claude loads your project state automatically when you start a new session
-- **Progress Tracking** — Mark tasks complete, see what's next, track where you are in each epic
-- **Decision Capture** — Technical choices and constraints are stored and loaded with your project
-- **Multi-Project Support** — Work on multiple projects, each maintains its own state
-- **Session History** — Every session is logged with what happened and decisions made
-- **Offline & Portable** — Everything is markdown files in `~/Vault/`. No API keys, no external services
+## Key Features
+
+- **Automatic Project Generation** — Discuss what you want to build, run `/claudepm:plan`, and ClaudePM generates a PRD with organized epics and tasks from your conversation
+- **Session State Persistence** — Claude automatically loads your project context when you start a new session, including current task and recent decisions
+- **Progress Tracking** — Mark tasks complete with `/claudepm:done`, track completion across epics, and always know what's next
+- **Decision Capture** — Technical choices and constraints are stored in structured files (`rules.md`, `_index.md`) and loaded with your project
+- **Multi-Project Support** — Maintain multiple projects simultaneously, each with its own state, and switch between them with `/claudepm:switch`
+- **Session History** — Every session is logged with summaries, decisions made, and tasks completed for future reference
+- **Local & Portable** — All data lives in `~/Vault/` as plain markdown files. No API keys, no external services, works offline
 
 ---
 
 ## How It Works
 
-**Core Components:**
+**Workflow:**
 
-1. **Vault Storage** — All project data lives in `~/Vault/` as plain markdown files
-2. **Manifest Registry** — `_manifest.md` tracks your projects and last-touched state
-3. **Project Index** — Each project's `_index.md` holds current epic, task, and key decisions
-4. **Epic Files** — Tasks organized by epic with approach notes and completion status
-5. **Session Logs** — Daily session files capture what happened for future reference
-6. **Smart Dispatcher** — `/claudepm` command determines what action you need
+1. **Plan** — Discuss your project with Claude, then run `/claudepm:plan` to generate structure
+2. **Work** — Start tasks with `/claudepm:start`, Claude loads relevant context automatically
+3. **Track** — Mark tasks complete with `/claudepm:done`, progress updates across files
+4. **Save** — Run `/claudepm:save` to log what happened before ending your session
+5. **Resume** — Next session, Claude loads your project state and picks up where you left off
 
-**File Structure:**
+**Architecture:**
 
 ```
 ~/Vault/
-├── _manifest.md              # Project registry
+├── _manifest.md              # Project registry + last-touched state
 ├── Projects/
 │   └── my-app/
-│       ├── _index.md         # Active state + decisions
-│       ├── PRD.md            # Requirements
-│       ├── rules.md          # Constraints
+│       ├── _index.md         # Current epic, task, key decisions
+│       ├── PRD.md            # Generated requirements
+│       ├── rules.md          # Captured constraints
 │       └── Epics/
-│           └── 01-foundation.md
+│           └── 01-foundation.md  # Tasks + approach notes
 └── Sessions/
-    └── 2026-01-08.md         # Session history
+    └── 2026-01-08.md         # Session log
 ```
+
+**Components:**
+
+1. **Manifest Registry** — `_manifest.md` tracks all projects and hints at which was last touched
+2. **Project Index** — Each project's `_index.md` holds current state, active stances, and key decisions
+3. **Epic Files** — Tasks organized by epic with status tracking and approach notes
+4. **Session Logs** — Daily files capturing what happened for audit and context
+5. **Smart Dispatcher** — `/claudepm` reads context and determines what action you need
 
 ---
 
@@ -86,14 +96,14 @@ Restart Claude Code. Your project context will load automatically in future sess
 
 | Command | Description |
 |---------|-------------|
-| `/claudepm` | Smart dispatcher — determines what you need |
-| `/claudepm:setup` | Initialize vault structure |
-| `/claudepm:plan` | Convert conversation into PRD, epics, and tasks |
-| `/claudepm:start` | Begin working on next task |
-| `/claudepm:done` | Mark current task complete |
-| `/claudepm:save` | Save session notes |
-| `/claudepm:status` | View current project state |
-| `/claudepm:switch` | Change active project |
+| `/claudepm` | Smart dispatcher — reads context and suggests appropriate action |
+| `/claudepm:setup` | Initialize vault structure at `~/Vault/` |
+| `/claudepm:plan` | Generate PRD, epics, and tasks from current conversation |
+| `/claudepm:start` | Begin working on next task, loads relevant context |
+| `/claudepm:done` | Mark current task complete, updates progress, suggests next |
+| `/claudepm:save` | Write session notes with summary and decisions |
+| `/claudepm:status` | Display current project, epic, task, and blockers |
+| `/claudepm:switch` | Change to a different project |
 
 ---
 
@@ -101,27 +111,27 @@ Restart Claude Code. Your project context will load automatically in future sess
 
 | | ClaudePM | Linear/Notion MCP |
 |-|----------|-------------------|
-| **Purpose** | Project & task tracking | External tool integration |
-| **Setup** | No API keys | API keys required |
-| **Task creation** | From conversation | Manual in external tool |
-| **Progress tracking** | Epics, tasks, completion | Via external tool |
-| **Decision capture** | Structured (rules, stances) | Varies by tool |
-| **Storage** | Local markdown | External service |
-| **Offline** | Yes | No |
+| **Purpose** | Project state tracking for Claude Code | Integration with external tools |
+| **Setup** | No API keys required | API keys required |
+| **Task Creation** | Generated from conversation | Created manually in external tool |
+| **Progress Tracking** | Built-in epics and task completion | Via external tool |
+| **Decision Capture** | Structured in rules.md and _index.md | Varies by tool |
+| **Storage** | Local markdown in ~/Vault/ | External service |
+| **Offline Support** | Yes | No |
 
-**ClaudePM** — Lightweight project continuity. Turns conversations into organized work, tracks progress across sessions. No external dependencies.
+**ClaudePM** — Lightweight project continuity built for Claude Code. Generates structure from conversations, tracks progress across sessions, no external dependencies.
 
-**Linear/Notion MCP** — Use if you already manage projects in those tools and want Claude to interact with them.
+**Linear/Notion MCP** — Integration layer for existing project management tools. Use if you already manage projects in Linear or Notion and want Claude to read/write to them.
 
 ---
 
 ## Documentation
 
-- **[Commands Reference](docs/COMMANDS.md)** — Detailed command documentation
-- **[Setup Guide](docs/SETUP.md)** — Installation and configuration
-- **[Future: Obsidian](docs/FUTURE.md)** — Planned visual integration
-- **[Changelog](CHANGELOG.md)** — Version history
-- **[Contributing](CONTRIBUTING.md)** — Development guidelines
+- **[Commands Reference](docs/COMMANDS.md)** — Detailed command documentation and usage examples
+- **[Setup Guide](docs/SETUP.md)** — Installation, configuration, and troubleshooting
+- **[Future: Obsidian](docs/FUTURE.md)** — Planned visual integration with Obsidian
+- **[Changelog](CHANGELOG.md)** — Version history and release notes
+- **[Contributing](CONTRIBUTING.md)** — Development setup and contribution guidelines
 
 ---
 
@@ -131,7 +141,7 @@ Restart Claude Code. Your project context will load automatically in future sess
 /plugin marketplace update claudepm-marketplace
 ```
 
-Restart Claude Code after updating.
+Restart Claude Code after updating to apply changes.
 
 ---
 
