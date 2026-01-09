@@ -19,9 +19,9 @@
 
 <p align="center">
   <a href="#quick-start">Quick Start</a> •
-  <a href="#key-features">Key Features</a> •
   <a href="#how-it-works">How It Works</a> •
   <a href="#commands">Commands</a> •
+  <a href="#comparison">Comparison</a> •
   <a href="#documentation">Documentation</a>
 </p>
 
@@ -97,10 +97,31 @@ Restart Claude Code. Your project context will load automatically in future sess
 
 ---
 
+## Comparison
+
+| | ClaudePM | Linear/Notion MCP |
+|-|----------|-------------------|
+| **Purpose** | Project & task tracking | External tool integration |
+| **Setup** | No API keys | API keys required |
+| **Task creation** | From conversation | Manual in external tool |
+| **Progress tracking** | Epics, tasks, completion | Via external tool |
+| **Decision capture** | Structured (rules, stances) | Varies by tool |
+| **Storage** | Local markdown | External service |
+| **Offline** | Yes | No |
+
+**ClaudePM** — Lightweight project continuity. Turns conversations into organized work, tracks progress across sessions. No external dependencies.
+
+**Linear/Notion MCP** — Use if you already manage projects in those tools and want Claude to interact with them.
+
+---
+
 ## Documentation
 
-- **[Changelog](CHANGELOG.md)** — Version history and updates
-- **[Contributing](CONTRIBUTING.md)** — Development setup and guidelines
+- **[Commands Reference](docs/COMMANDS.md)** — Detailed command documentation
+- **[Setup Guide](docs/SETUP.md)** — Installation and configuration
+- **[Future: Obsidian](docs/FUTURE.md)** — Planned visual integration
+- **[Changelog](CHANGELOG.md)** — Version history
+- **[Contributing](CONTRIBUTING.md)** — Development guidelines
 
 ---
 

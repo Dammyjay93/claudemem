@@ -10,110 +10,41 @@ In Claude Code:
 /claudepm:setup
 ```
 
-The first command adds the marketplace. The second installs the plugin. The third creates your vault structure and shows configuration steps.
+Restart Claude Code after installing.
 
 ---
 
 ## Post-Setup Configuration
 
-After running `/claudepm:setup`, you need to:
-
-### 1. Update CLAUDE.md
-
-Add to `~/.claude/CLAUDE.md`:
+After running `/claudepm:setup`, add this to your `~/.claude/CLAUDE.md`:
 
 ```markdown
----
-
 # Memory Protocol (ClaudePM)
+
+Persistent memory across sessions. Multi-session safe.
+
+## Workspace
 
 @~/Vault/_manifest.md
 
-## On Every Session Start
+## Session Start
 
-1. Read the manifest imported above
-2. Check `Active Context` section for current project/task
-3. If active context exists:
-   - Announce: "Resuming {project}, currently on: {task}"
-4. If no active context:
-   - Announce: "No active project. Ready to start something new."
+1. Read manifest above
+2. Check `Last Touched` for project hint
+3. Prompt: "Resume {project}? (y / switch / list)"
+4. Load project's `_index.md` for epic/task state
+
+## Commands
+
+- `/claudepm` — Smart dispatcher
+- `/claudepm plan` — Create project from conversation
+- `/claudepm start` — Mark task in-progress
+- `/claudepm done` — Mark task complete
+- `/claudepm save` — Save session
+- `/claudepm switch` — Change project
 ```
 
-### 2. Configure Hooks
-
-Add to `~/.claude/settings.json`:
-
-```json
-{
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start-memory.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-stop-reminder.sh"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-If you have existing hooks, merge these with yours.
-
----
-
-## Manual Installation
-
-If you prefer not to use the plugin system:
-
-### 1. Create Vault Structure
-
-```bash
-mkdir -p ~/Vault/{Projects,Sessions,.schemas}
-```
-
-### 2. Copy Files from Repository
-
-```bash
-git clone https://github.com/Dammyjay93/claudepm.git
-cp claudepm/vault/_manifest.md ~/Vault/
-cp claudepm/vault/.schemas/*.md ~/Vault/.schemas/
-```
-
-### 3. Copy Commands
-
-```bash
-mkdir -p ~/.claude/commands/claudepm
-cp claudepm/commands/claudepm.md ~/.claude/commands/
-cp claudepm/commands/claudepm/*.md ~/.claude/commands/claudepm/
-```
-
-### 4. Copy Hooks
-
-```bash
-mkdir -p ~/.claude/hooks
-cp claudepm/hooks/*.sh ~/.claude/hooks/
-cp claudepm/hooks/*.py ~/.claude/hooks/
-chmod +x ~/.claude/hooks/*.sh
-```
-
-### 5. Configure (see above)
-
-Update CLAUDE.md and settings.json as described above, but use `~/.claude/hooks/` paths instead of `${CLAUDE_PLUGIN_ROOT}/hooks/`.
+The `@~/Vault/_manifest.md` line imports your workspace manifest automatically on every session.
 
 ---
 
@@ -140,6 +71,20 @@ Use /claudepm:plan to create a project from conversation.
 
 ---
 
+## Vault Structure
+
+After setup, your vault looks like:
+
+```
+~/Vault/
+├── _manifest.md           # Project registry
+├── .schemas/              # File templates
+├── Projects/              # Your projects
+└── Sessions/              # Session logs
+```
+
+---
+
 ## Troubleshooting
 
 ### Command not found
@@ -147,13 +92,22 @@ Use /claudepm:plan to create a project from conversation.
 1. Check plugin is installed: `/plugin list`
 2. Restart Claude Code to pick up new commands
 
-### Hooks not running
-
-1. Check settings.json is valid JSON
-2. Check hook paths are correct
-3. For plugin hooks, ensure `${CLAUDE_PLUGIN_ROOT}` is supported
-
 ### Manifest not loading
 
-1. Check file exists: `cat ~/Vault/_manifest.md`
+1. Check file exists: `ls ~/Vault/_manifest.md`
 2. Check CLAUDE.md has the import: `@~/Vault/_manifest.md`
+
+### Context not resuming
+
+1. Check CLAUDE.md includes the session start instructions
+2. Verify manifest has `Last Touched` set to your project
+
+---
+
+## Updating
+
+```
+/plugin marketplace update claudepm-marketplace
+```
+
+Restart Claude Code after updating.
