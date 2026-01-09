@@ -5,93 +5,103 @@ allowed-tools: Read, Write, Edit, Bash
 
 # ClaudeMem Save
 
-Write session notes capturing what was accomplished.
+**EXHAUSTIVE SAVES REQUIRED** - Every save must touch ALL relevant files.
 
-**Multi-session safe**: Updates your project's `_index.md` and adds to manifest's Recent Sessions. Other sessions' states are unaffected.
+**Multi-session safe**: Updates your project's files. Other sessions' states are unaffected.
 
 ## Steps
 
 1. **Gather Session Data**
    - Read `~/Vault/_manifest.md` for Last Touched project
    - Read project's `_index.md` for current state
+   - Read project's `rules.md` for current constraints
+   - Read active epic file for current tasks
    - Review conversation for:
-     - What was discussed
      - What was built/changed
-     - Decisions made
-     - Problems encountered
+     - Decisions made (and what type)
+     - Tasks completed
      - What's next
 
-2. **Update Project State**
+2. **Update Project Index** (`~/Vault/Projects/{id}/_index.md`)
+   - Update **Current State** section (active epic/task, last completed)
+   - Update **Epic progress counts** (e.g., "8/15 tasks")
+   - Update **Active Stances** table if any stances changed
+   - Update **Key Decisions** table if a major decision was made
+     - Key Decisions are CURATED (max ~10), not appended
+     - Remove outdated ones, add significant new ones
 
-   Edit `~/Vault/Projects/{id}/_index.md`:
-   - Update **Current State** section with latest epic/task
-   - This preserves your work for next session
+3. **Update Epic File** (`~/Vault/Projects/{id}/Epics/{active}.md`)
+   - Check off ALL completed tasks with [x]
+   - Update task statuses (#done, #in-progress)
+   - Check off completed acceptance criteria
+   - Update **Approach** section with epic-scoped decisions
+   - Update epic status if changed (pending → in-progress → done)
 
-3. **Create Session File**
+4. **Update Rules if Needed** (`~/Vault/Projects/{id}/rules.md`)
+   - If a new enforced constraint was established → add to appropriate section
+   - If an existing rule changed → update in place
+   - Rules are update-in-place, NEVER append-only
+   - Sections: Product, UI, Engineering
 
-File: `~/Vault/Sessions/{YYYY-MM-DD}.md`
-
-If file exists for today, create `{YYYY-MM-DD}-2.md` etc.
+5. **Create Session File** (`~/Vault/Sessions/{YYYY-MM-DD}-{project}.md`)
 
 ```yaml
 ---
 type: session
 date: {YYYY-MM-DD}
-project: {active project or "general"}
-started: {session start time if known}
-ended: {now}
+project: {project id}
 ---
 
-# Session: {YYYY-MM-DD}
+# Session: {Project Name}
 
 ## Summary
-{2-3 sentence summary of the session}
+{2-3 sentence summary}
 
 ## Completed
-- [x] {Task or action completed}
-- [x] {Another completed item}
+- {Task completed}
+- {Another completed item}
 
-## In Progress
-- [ ] {Unfinished work}
+## Decisions
+- **{Topic}**: {Decision and brief rationale}
 
-## Decisions Made
-- **{Topic}**: {Decision and rationale}
-
-## Blockers Encountered
-- {Blocker} → {Resolution or "Unresolved"}
-
-## Next Session
-- [ ] {First priority for next time}
-- [ ] {Second priority}
-
-## Notes
-{Any additional observations, learnings, context}
+## Next Steps
+- {First priority}
+- {Second priority}
 ```
 
-4. **Update Manifest**
-   - Add entry to Recent Sessions table
-   - Keep only last 10 sessions in table
+6. **Update Manifest** (`~/Vault/_manifest.md`)
+   - Update project's `last_active` date in Projects table
    - Update `Last Touched` to current project
-   - Update timestamp
 
-5. **Announce**
+7. **Announce**
 
 ```
-SESSION SAVED: {date}
+SESSION SAVED
 
-Summary: {brief summary}
-
-Completed: {n} items
-Next time: {first next item}
-
-Project state: ~/Vault/Projects/{id}/_index.md
-Session notes: ~/Vault/Sessions/{date}.md
+Project: {name}
+Completed: {n} tasks
+Rules updated: {yes/no}
+Next: {first next step}
 ```
+
+## Decision Routing
+
+When saving, route decisions to the right place:
+
+| Decision type | Where it goes | Growth pattern |
+|---------------|---------------|----------------|
+| Enforced constraint | `rules.md` | Update in place |
+| Major product decision | `_index.md` Key Decisions | Curated (max ~10) |
+| Current stance | `_index.md` Active Stances | Update in place |
+| Epic-specific approach | Epic file Approach section | Lives with epic |
+| Context/rationale | Session notes | Accumulates naturally |
+
+**Key principle**: Rules and stances are bounded. History lives in session files.
 
 ## Auto-Save Triggers
 
 Consider saving when:
-- User says "done for today" / "stopping" / "that's it"
+- User says "done for today" / "stopping" / "save"
 - Switching to a different project
 - Before `/claudemem switch`
-- Long pause in conversation
+- Significant milestone reached

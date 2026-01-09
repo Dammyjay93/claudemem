@@ -4,14 +4,14 @@
 `_manifest.md` (root of Vault)
 
 ## Purpose
-Central registry for projects and session history. Does NOT track active session state — that lives in each project's `_index.md`.
+Central registry for projects. Does NOT track active session state — that lives in each project's `_index.md`. Session history lives in `Sessions/` folder.
 
 ## Required Frontmatter
 
 ```yaml
 ---
 type: manifest
-version: 2
+version: 3
 updated: string  # ISO timestamp
 ---
 ```
@@ -25,12 +25,8 @@ updated: string  # ISO timestamp
 project: {project-id}   # Advisory hint only, may be stale
 
 ## Projects
-| id | name | status | priority | path |
-|----|------|--------|----------|------|
-
-## Recent Sessions
-| date | project | summary |
-|------|---------|---------|
+| id | name | status | priority | last_active | path |
+|----|------|--------|----------|-------------|------|
 
 ## Blockers
 | id | description | blocking | created | resolved |
@@ -39,7 +35,6 @@ project: {project-id}   # Advisory hint only, may be stale
 ## Quick Stats
 - Total projects: {n}
 - Active projects: {n}
-- Tasks completed (7 days): {n}
 ```
 
 ## Rules
@@ -49,7 +44,8 @@ project: {project-id}   # Advisory hint only, may be stale
 3. **Update Last Touched only on**:
    - Session start (when project is chosen)
    - Explicit `/claudemem switch`
-4. **Recent Sessions** — Append new entries, keep last 10.
+4. **Update last_active** — When saving a session, update the project's `last_active` date.
+5. **Session history** — Lives in `Sessions/` folder, not in manifest. No duplication.
 
 ## Multi-Session Behavior
 

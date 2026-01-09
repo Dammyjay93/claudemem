@@ -52,12 +52,24 @@ brief: {1-2 sentence summary}
 - **Active Task**: {first task or "None"}
 - **Blockers**: None
 
+## Active Stances
+
+| Domain | Stance | Source |
+|--------|--------|--------|
+| {domain} | {current stance} | rules.md §{section} |
+
+## Key Decisions
+
+| Decision | Rationale | Revisit if |
+|----------|-----------|------------|
+| {decision} | {why} | {conditions for reconsideration} |
+
 ## Epics
-{List of epics}
+{List of epics with progress counts}
 
 ## Quick Links
 - [PRD](./PRD.md)
-- [Decisions](./Decisions.md)
+- [Rules](./rules.md)
 ```
 
 ### PRD.md
@@ -87,17 +99,26 @@ created: {today}
 {Stack, architecture decisions}
 ```
 
-### Decisions.md
+### rules.md
 ```yaml
 ---
-type: decisions
+type: rules
 project: {id}
+updated: {today}
 ---
 
-# Architecture Decisions
+# Rules
 
-## {today}: Initial Decisions
-{Decisions made during planning}
+Enforced constraints. Update in place, never append.
+
+## Product
+- {product constraint}
+
+## UI
+- {ui pattern/rule}
+
+## Engineering
+- {engineering standard}
 ```
 
 ### Epics
@@ -106,11 +127,40 @@ Create epic files based on logical groupings:
 - `02-{name}.md` - Core functionality
 - etc.
 
-Each epic contains tasks as checkboxes.
+Each epic contains:
+- Description
+- Approach section (epic-scoped decisions)
+- Tasks as checkboxes
+- Acceptance criteria
+
+```yaml
+---
+type: epic
+id: {id}
+project: {project-id}
+status: pending
+priority: {P0/P1/P2}
+created: {today}
+---
+
+# {Epic Name}
+
+## Description
+{What this epic accomplishes}
+
+## Approach (this epic)
+- {Epic-scoped decision or approach}
+
+## Tasks
+- [ ] {Task} #pending #{priority}
+
+## Acceptance Criteria
+- [ ] {Criterion}
+```
 
 5. **Update Manifest**
    - Add project to Projects table
-   - Set `Last Touched` → new project (not "Active Context")
+   - Set `Last Touched` → new project
    - Update timestamp
 
 6. **Announce Result**
@@ -134,10 +184,10 @@ Ready to start? First task: {first task}
 
 | File | Action |
 |------|--------|
-| `Projects/{id}/_index.md` | Created with Current State |
+| `Projects/{id}/_index.md` | Created with Active Stances, Key Decisions |
 | `Projects/{id}/PRD.md` | Created |
-| `Projects/{id}/Decisions.md` | Created |
-| `Projects/{id}/Epics/*.md` | Created |
+| `Projects/{id}/rules.md` | Created with Product/UI/Engineering sections |
+| `Projects/{id}/Epics/*.md` | Created with Approach sections |
 | `_manifest.md` | Add to Projects table, set Last Touched |
 
 ## Rules
@@ -147,6 +197,8 @@ Ready to start? First task: {first task}
 - Include acceptance criteria for epics
 - Set realistic priorities (not everything is P0)
 - If unclear, ask before creating
+- Populate rules.md with any constraints identified
+- Key Decisions should have revisit triggers
 
 ## Argument
 

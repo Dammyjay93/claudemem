@@ -21,9 +21,15 @@ Show the current workspace state.
 
 ## Output Format
 
+**REQUIRED**:
+1. First, read `${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json` to get the current version
+2. Always start output with `CLAUDEMEM v{version}` header
+
 ### If Project Has Active Context
 
 ```
+CLAUDEMEM v{version}
+
 PROJECT: {Project Name}
 Status: {status} | Priority: {priority}
 
@@ -46,6 +52,8 @@ BLOCKERS:
 ### If No Active Context
 
 ```
+CLAUDEMEM v{version}
+
 NO ACTIVE PROJECT
 
 Recent Activity:
@@ -61,6 +69,8 @@ Use /claudemem switch {project} to select one.
 
 If you want to show all projects' states:
 ```
+CLAUDEMEM v{version}
+
 WORKSPACE OVERVIEW
 
 Projects:

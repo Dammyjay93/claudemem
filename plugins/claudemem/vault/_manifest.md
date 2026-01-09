@@ -1,6 +1,6 @@
 ---
 type: manifest
-version: 2
+version: 3
 updated: 2024-01-01T00:00:00Z
 ---
 
@@ -8,19 +8,13 @@ updated: 2024-01-01T00:00:00Z
 
 ## Last Touched
 
-project: null
+project:
 
 ## Projects
 
-| id | name | status | priority | path |
-|----|------|--------|----------|------|
+| id | name | status | priority | last_active | path |
+|----|------|--------|----------|-------------|------|
 <!-- No projects yet -->
-
-## Recent Sessions
-
-| date | project | summary |
-|------|---------|---------|
-<!-- No sessions yet -->
 
 ## Blockers
 
@@ -32,4 +26,3 @@ project: null
 
 - Total projects: 0
 - Active projects: 0
-- Tasks completed (7 days): 0

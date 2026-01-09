@@ -34,15 +34,28 @@ blocked_by: array    # Epic IDs this is blocked by
 ## Description
 {What this epic accomplishes}
 
+## Approach (this epic)
+- {Epic-scoped decision or approach}
+- {Technical choice specific to this work}
+
 ## Tasks
 
 - [ ] Task description #pending
 - [ ] Task description #pending
 
 ## Acceptance Criteria
-- {Criterion 1}
-- {Criterion 2}
+- [ ] {Criterion 1}
+- [ ] {Criterion 2}
 ```
+
+## Approach Section
+
+The Approach section captures epic-scoped decisions that:
+- Are specific to this epic's implementation
+- Don't need to be enforced project-wide
+- Will be archived when the epic completes
+
+When an approach becomes a project-wide pattern, promote it to `rules.md`.
 
 ## Task Format
 

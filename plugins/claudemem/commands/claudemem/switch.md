@@ -64,7 +64,7 @@ Use /claudemem start {task} to begin.
 ```
 RESUMING: {Project Name}
 
-Last worked: {date from Recent Sessions}
+Last worked: {last_active from Projects table}
 Left off at: {task from project's _index.md}
 
 Continue with {task}? (y) or /claudemem status for full overview
