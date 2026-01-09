@@ -1,0 +1,67 @@
+name: Validate Plugin Structure
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate marketplace.json exists
+        run: |
+          if [ ! -f ".claude-plugin/marketplace.json" ]; then
+            echo "Error: .claude-plugin/marketplace.json not found"
+            exit 1
+          fi
+          echo "marketplace.json found"
+
+      - name: Validate plugin.json exists
+        run: |
+          if [ ! -f "plugins/claudepm/.claude-plugin/plugin.json" ]; then
+            echo "Error: plugins/claudepm/.claude-plugin/plugin.json not found"
+            exit 1
+          fi
+          echo "plugin.json found"
+
+      - name: Validate JSON syntax
+        run: |
+          python3 -m json.tool .claude-plugin/marketplace.json > /dev/null
+          python3 -m json.tool plugins/claudepm/.claude-plugin/plugin.json > /dev/null
+          echo "JSON syntax valid"
+
+      - name: Check required command files exist
+        run: |
+          required_commands=(
+            "plugins/claudepm/commands/claudepm.md"
+            "plugins/claudepm/commands/claudepm/plan.md"
+            "plugins/claudepm/commands/claudepm/start.md"
+            "plugins/claudepm/commands/claudepm/done.md"
+            "plugins/claudepm/commands/claudepm/save.md"
+            "plugins/claudepm/commands/claudepm/status.md"
+            "plugins/claudepm/commands/claudepm/switch.md"
+            "plugins/claudepm/commands/claudepm/setup.md"
+          )
+
+          for cmd in "${required_commands[@]}"; do
+            if [ ! -f "$cmd" ]; then
+              echo "Error: Required command file not found: $cmd"
+              exit 1
+            fi
+          done
+          echo "All required command files present"
+
+      - name: Validate version consistency
+        run: |
+          marketplace_name=$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]['name'])")
+          plugin_name=$(python3 -c "import json; print(json.load(open('plugins/claudepm/.claude-plugin/plugin.json'))['name'])")
+
+          if [ "$marketplace_name" != "$plugin_name" ]; then
+            echo "Error: Plugin name mismatch between marketplace.json ($marketplace_name) and plugin.json ($plugin_name)"
+            exit 1
+          fi
+          echo "Plugin names consistent: $plugin_name"
