@@ -43,7 +43,7 @@ project: {project-id}   # Advisory hint only, may be stale
 2. **Last Touched is advisory** — It's a convenience hint for session start, not authoritative.
 3. **Update Last Touched only on**:
    - Session start (when project is chosen)
-   - Explicit `/claudemem switch`
+   - Explicit `/claudepm switch`
 4. **Update last_active** — When saving a session, update the project's `last_active` date.
 5. **Session history** — Lives in `Sessions/` folder, not in manifest. No duplication.
 

@@ -4,7 +4,7 @@ allowed-tools: Read, Write, Edit, Glob
 argument-hint: <project-name>
 ---
 
-# ClaudeMem Switch
+# ClaudePM Switch
 
 Switch active context to a different project.
 
@@ -37,7 +37,7 @@ Switch active context to a different project.
    - {project 1} ({status})
    - {project 2} ({status})
 
-   Or use /claudemem plan to create a new one.
+   Or use /claudepm plan to create a new one.
    ```
 
 5. **Load New Project**
@@ -56,7 +56,7 @@ Current Task: {task from _index.md or "None - pick one to start"}
 
 Progress: {n}/{m} tasks complete
 
-Use /claudemem start {task} to begin.
+Use /claudepm start {task} to begin.
 ```
 
 ## If Switching to Paused Project
@@ -67,7 +67,7 @@ RESUMING: {Project Name}
 Last worked: {last_active from Projects table}
 Left off at: {task from project's _index.md}
 
-Continue with {task}? (y) or /claudemem status for full overview
+Continue with {task}? (y) or /claudepm status for full overview
 ```
 
 ## What Gets Updated

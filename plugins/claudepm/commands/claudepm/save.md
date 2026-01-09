@@ -3,7 +3,7 @@ description: Save session notes and update manifest
 allowed-tools: Read, Write, Edit, Bash
 ---
 
-# ClaudeMem Save
+# ClaudePM Save
 
 **EXHAUSTIVE SAVES REQUIRED** - Every save must touch ALL relevant files.
 
@@ -103,5 +103,5 @@ When saving, route decisions to the right place:
 Consider saving when:
 - User says "done for today" / "stopping" / "save"
 - Switching to a different project
-- Before `/claudemem switch`
+- Before `/claudepm switch`
 - Significant milestone reached

@@ -4,7 +4,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 argument-hint: [action] [target]
 ---
 
-# ClaudeMem - Memory Management
+# ClaudePM - Memory Management
 
 You are the memory manager for this workspace. Your job is to maintain context across sessions.
 
@@ -45,7 +45,7 @@ You are the memory manager for this workspace. Your job is to maintain context a
 
 Based on the argument and conversation context:
 
-### No argument (`/claudemem`)
+### No argument (`/claudepm`)
 Act as smart dispatcher:
 1. If conversation discussed a new project idea → Offer to plan it
 2. If there's an active task in project → Show status and offer to continue
@@ -63,14 +63,14 @@ Route to appropriate action:
 ## Output Format
 
 **REQUIRED**:
-1. First, read `~/.claude/plugins/marketplaces/claudemem-marketplace/plugins/claudemem/.claude-plugin/plugin.json` to get the current version
-2. Always start output with `CLAUDEMEM v{version}` header using the version from plugin.json
+1. First, read `~/.claude/plugins/marketplaces/claudepm-marketplace/plugins/claudepm/.claude-plugin/plugin.json` to get the current version
+2. Always start output with `CLAUDEPM v{version}` header using the version from plugin.json
 
 Note: `${CLAUDE_PLUGIN_ROOT}` doesn't work in markdown commands (known bug). Use the full marketplace path.
 
 ### Dashboard (no active context)
 ```
-CLAUDEMEM v{version}
+CLAUDEPM v{version}
 
 No active project.
 
@@ -82,7 +82,7 @@ Ready to start something new.
 
 ### Status (active context)
 ```
-CLAUDEMEM v{version}
+CLAUDEPM v{version}
 
 Project: {name}
 Epic: {epic name} ({n}/{m} tasks done)

@@ -3,7 +3,7 @@ description: Show current project, epic, and task status
 allowed-tools: Read, Glob
 ---
 
-# ClaudeMem Status
+# ClaudePM Status
 
 Show the current workspace state.
 
@@ -24,15 +24,15 @@ Show the current workspace state.
 ## Output Format
 
 **REQUIRED**:
-1. First, read `~/.claude/plugins/marketplaces/claudemem-marketplace/plugins/claudemem/.claude-plugin/plugin.json` to get the current version
-2. Always start output with `CLAUDEMEM v{version}` header
+1. First, read `~/.claude/plugins/marketplaces/claudepm-marketplace/plugins/claudepm/.claude-plugin/plugin.json` to get the current version
+2. Always start output with `CLAUDEPM v{version}` header
 
 Note: `${CLAUDE_PLUGIN_ROOT}` doesn't work in markdown commands (known bug). Use the full marketplace path.
 
 ### If Project Has Active Context
 
 ```
-CLAUDEMEM v{version}
+CLAUDEPM v{version}
 
 PROJECT: {Project Name}
 Status: {status} | Priority: {priority}
@@ -56,7 +56,7 @@ BLOCKERS:
 ### If No Active Context
 
 ```
-CLAUDEMEM v{version}
+CLAUDEPM v{version}
 
 NO ACTIVE PROJECT
 
@@ -66,14 +66,14 @@ Recent Activity:
 Available Projects:
 {List projects with status}
 
-Use /claudemem switch {project} to select one.
+Use /claudepm switch {project} to select one.
 ```
 
 ### Multi-Session Info
 
 If you want to show all projects' states:
 ```
-CLAUDEMEM v{version}
+CLAUDEPM v{version}
 
 WORKSPACE OVERVIEW
 

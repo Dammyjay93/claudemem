@@ -3,7 +3,7 @@ description: Mark current task as complete
 allowed-tools: Read, Write, Edit
 ---
 
-# ClaudeMem Done
+# ClaudePM Done
 
 Mark the current task as complete and suggest next steps.
 
@@ -20,7 +20,7 @@ Mark the current task as complete and suggest next steps.
    ```
    No task currently in progress.
 
-   Use /claudemem start {task} to begin one.
+   Use /claudepm start {task} to begin one.
    ```
 
 3. **Mark Complete in Epic File** (`~/Vault/Projects/{project}/Epics/{epic}.md`)
@@ -59,7 +59,7 @@ NEXT UP:
 {Next task description}
 Priority: {priority}
 
-Continue? (y) or /claudemem status for overview
+Continue? (y) or /claudepm status for overview
 ```
 
 ## What Gets Updated
@@ -85,5 +85,5 @@ Summary:
 - Started: {date}
 - Finished: {today}
 
-Use /claudemem save to write final session notes.
+Use /claudepm save to write final session notes.
 ```

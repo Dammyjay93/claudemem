@@ -1,6 +1,6 @@
-# ClaudeMem Setup
+# ClaudePM Setup
 
-Initialize the ClaudeMem vault structure. Run this once after installing the plugin.
+Initialize the ClaudePM vault structure. Run this once after installing the plugin.
 
 ## Instructions
 
@@ -137,7 +137,7 @@ Initialize the ClaudeMem vault structure. Run this once after installing the plu
 
 6. After creating files, announce:
    ```
-   ClaudeMem vault created at ~/Vault/
+   ClaudePM vault created at ~/Vault/
 
    Next steps:
    1. Add memory protocol to ~/.claude/CLAUDE.md (see below)
@@ -145,7 +145,7 @@ Initialize the ClaudeMem vault structure. Run this once after installing the plu
 
    CLAUDE.md - Add this section:
    ---
-   # Memory Protocol (ClaudeMem)
+   # Memory Protocol (ClaudePM)
    @~/Vault/_manifest.md
 
    ## On Every Session Start
@@ -168,5 +168,5 @@ Initialize the ClaudeMem vault structure. Run this once after installing the plu
      }
    }
 
-   Run /claudemem status to verify setup.
+   Run /claudepm status to verify setup.
    ```

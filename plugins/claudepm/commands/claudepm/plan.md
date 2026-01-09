@@ -4,7 +4,7 @@ allowed-tools: Read, Write, Bash, Glob
 argument-hint: [project-name]
 ---
 
-# ClaudeMem Plan
+# ClaudePM Plan
 
 Create a structured project from the conversation.
 

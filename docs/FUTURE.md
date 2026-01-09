@@ -1,6 +1,6 @@
 # Future: Obsidian Integration
 
-ClaudeMem stores everything as markdown. This makes it compatible with Obsidian as a visual layer.
+ClaudePM stores everything as markdown. This makes it compatible with Obsidian as a visual layer.
 
 **Status**: Planned, not yet implemented
 
@@ -77,7 +77,7 @@ kanban-plugin: basic
 ## Done
 ```
 
-### 2. Obsidian Plugin for ClaudeMem
+### 2. Obsidian Plugin for ClaudePM
 
 A custom plugin that:
 - Syncs task status between epic files and kanban
@@ -95,7 +95,7 @@ Use Obsidian's Templater plugin for:
 
 ## Why Not Build This Now?
 
-1. **Core system must work first** - ClaudeMem needs to be solid before adding visual layer
+1. **Core system must work first** - ClaudePM needs to be solid before adding visual layer
 2. **Optional complexity** - Many users won't need/want Obsidian
 3. **Obsidian is just a viewer** - The value is in the Claude integration, not the UI
 
@@ -119,5 +119,5 @@ Claude writes files, Obsidian displays them. No integration needed for basic use
 If you want to build Obsidian integration:
 
 1. Open an issue to discuss approach
-2. Keep it optional (core ClaudeMem should work without Obsidian)
+2. Keep it optional (core ClaudePM should work without Obsidian)
 3. Don't modify core file schemas

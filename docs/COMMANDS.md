@@ -1,10 +1,10 @@
 # Commands Reference
 
-## /claudemem
+## /claudepm
 
 Smart dispatcher that reads context and suggests appropriate action.
 
-**Usage**: `/claudemem`
+**Usage**: `/claudepm`
 
 **Behavior**:
 - No active project → Shows dashboard
@@ -13,11 +13,11 @@ Smart dispatcher that reads context and suggests appropriate action.
 
 ---
 
-## /claudemem:setup
+## /claudepm:setup
 
 Initialize the vault structure. Run once after installing the plugin.
 
-**Usage**: `/claudemem:setup`
+**Usage**: `/claudepm:setup`
 
 **Creates**:
 - `~/Vault/_manifest.md`
@@ -27,11 +27,11 @@ Initialize the vault structure. Run once after installing the plugin.
 
 ---
 
-## /claudemem:status
+## /claudepm:status
 
 Shows current workspace state.
 
-**Usage**: `/claudemem:status`
+**Usage**: `/claudepm:status`
 
 **Output (with active project)**:
 ```
@@ -66,11 +66,11 @@ Available Projects:
 
 ---
 
-## /claudemem:plan
+## /claudepm:plan
 
 Creates a project from the current conversation.
 
-**Usage**: `/claudemem:plan [project-name]`
+**Usage**: `/claudepm:plan [project-name]`
 
 **What it creates**:
 - `Projects/{id}/_index.md` - Project overview
@@ -87,11 +87,11 @@ Creates a project from the current conversation.
 
 ---
 
-## /claudemem:start
+## /claudepm:start
 
 Begins working on a task.
 
-**Usage**: `/claudemem:start [task-description]`
+**Usage**: `/claudepm:start [task-description]`
 
 **Behavior**:
 - No argument → Starts next pending task in current epic
@@ -105,11 +105,11 @@ Begins working on a task.
 
 ---
 
-## /claudemem:done
+## /claudepm:done
 
 Marks current task as complete.
 
-**Usage**: `/claudemem:done`
+**Usage**: `/claudepm:done`
 
 **Actions**:
 1. Marks task as `[x]` and `#done`
@@ -120,11 +120,11 @@ Marks current task as complete.
 
 ---
 
-## /claudemem:save
+## /claudepm:save
 
 Writes session notes and updates manifest.
 
-**Usage**: `/claudemem:save`
+**Usage**: `/claudepm:save`
 
 **Creates**: `Sessions/{YYYY-MM-DD}.md`
 
@@ -141,11 +141,11 @@ Writes session notes and updates manifest.
 
 ---
 
-## /claudemem:switch
+## /claudepm:switch
 
 Changes to a different project.
 
-**Usage**: `/claudemem:switch <project-name>`
+**Usage**: `/claudepm:switch <project-name>`
 
 **Actions**:
 1. Offers to save current session

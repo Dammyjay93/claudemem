@@ -1,15 +1,15 @@
 {
-  "name": "claudemem-marketplace",
-  "description": "ClaudeMem plugin marketplace",
+  "name": "claudepm-marketplace",
+  "description": "ClaudePM plugin marketplace - Project management for Claude Code",
   "version": "1.0.0",
   "owner": {
     "name": "Damola Akinleye"
   },
   "plugins": [
     {
-      "name": "claudemem",
-      "description": "Persistent memory for Claude Code. Remembers your projects, tasks, and decisions across sessions.",
-      "source": "./plugins/claudemem",
+      "name": "claudepm",
+      "description": "Project manager for Claude Code. Converts conversations into PRDs, epics, and tasks. Tracks progress with bounded decision system.",
+      "source": "./plugins/claudepm",
       "category": "productivity"
     }
   ]

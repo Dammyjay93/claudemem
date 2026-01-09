@@ -1,8 +1,8 @@
-# ClaudeMem
+# ClaudePM
 
 Claude Code doesn't track project state between sessions. You can drop files for context, but there's no built-in way to know what task you were on or what you decided yesterday.
 
-ClaudeMem adds that layer.
+ClaudePM adds that layer.
 
 ```
 [New session starts]
@@ -24,7 +24,7 @@ You can drop a PRD.md in your project and Claude will read it. That works for st
 - **What happened last session?** No automatic session logging
 - **Which project am I working on?** If you juggle multiple projects, Claude doesn't know which one is active
 
-ClaudeMem tracks all of this in structured files that Claude reads automatically when you start a session.
+ClaudePM tracks all of this in structured files that Claude reads automatically when you start a session.
 
 ---
 
@@ -32,22 +32,22 @@ ClaudeMem tracks all of this in structured files that Claude reads automatically
 
 You can. Every single session. Forever.
 
-Or you can run `/claudemem:status` and Claude already knows.
+Or you can run `/claudepm:status` and Claude already knows.
 
-The difference is automation. ClaudeMem hooks into session start/stop, so Claude loads context without you asking. It tracks task completion so you don't manually update files. It logs sessions so you have a history.
+The difference is automation. ClaudePM hooks into session start/stop, so Claude loads context without you asking. It tracks task completion so you don't manually update files. It logs sessions so you have a history.
 
 ---
 
 ## Why not Linear/Notion with MCP?
 
-You can use those MCPs. They work. ClaudeMem is different in a few ways:
+You can use those MCPs. They work. ClaudePM is different in a few ways:
 
 - **No setup**: No API keys, no external accounts. Just markdown files.
 - **Conversation → tasks**: Claude generates PRD and tasks from your discussion. You don't create them manually.
 - **Session-first**: Built specifically for "where was I?" not general project management.
 - **Portable**: It's just files in `~/Vault/`. Works offline, easy to backup, readable without any tool.
 
-If you already use Linear and want Claude to interact with it, use the Linear MCP. If you want lightweight session memory without external dependencies, use ClaudeMem.
+If you already use Linear and want Claude to interact with it, use the Linear MCP. If you want lightweight session memory without external dependencies, use ClaudePM.
 
 ---
 
@@ -56,16 +56,16 @@ If you already use Linear and want Claude to interact with it, use the Linear MC
 Inside Claude Code, run:
 
 ```
-/plugin marketplace add Dammyjay93/claudemem
-/plugin install claudemem
+/plugin marketplace add Dammyjay93/claudepm
+/plugin install claudepm
 ```
 
-Then run `/claudemem:setup` to create your vault structure.
+Then run `/claudepm:setup` to create your vault structure.
 
 ## Updating
 
 ```
-/plugin marketplace update claudemem-marketplace
+/plugin marketplace update claudepm-marketplace
 ```
 
 Restart Claude Code after updating to apply changes.
@@ -74,7 +74,7 @@ Restart Claude Code after updating to apply changes.
 
 ## How It Works
 
-ClaudeMem stores everything in `~/Vault/`:
+ClaudePM stores everything in `~/Vault/`:
 
 ```
 ~/Vault/
@@ -121,13 +121,13 @@ No conflict. Each session writes to its own project file. The manifest's "Last T
 
 | Command | What It Does |
 |---------|--------------|
-| `/claudemem:setup` | Initialize vault structure |
-| `/claudemem:plan` | Turn current conversation into PRD, epics, and tasks |
-| `/claudemem:start` | Start the next task (or a specific one) |
-| `/claudemem:done` | Mark current task complete, get next suggestion |
-| `/claudemem:save` | Write session notes before you close |
-| `/claudemem:status` | Show active project, current task, blockers |
-| `/claudemem:switch` | Change to a different project |
+| `/claudepm:setup` | Initialize vault structure |
+| `/claudepm:plan` | Turn current conversation into PRD, epics, and tasks |
+| `/claudepm:start` | Start the next task (or a specific one) |
+| `/claudepm:done` | Mark current task complete, get next suggestion |
+| `/claudepm:save` | Write session notes before you close |
+| `/claudepm:status` | Show active project, current task, blockers |
+| `/claudepm:switch` | Change to a different project |
 
 ---
 
@@ -138,7 +138,7 @@ No conflict. Each session writes to its own project file. The manifest's "Last T
 You have a conversation about what you want to build. Then:
 
 ```
-You: /claudemem:plan
+You: /claudepm:plan
 
 Claude: Creates PRD, epics, tasks from conversation
         "Created 'my-project': 4 epics, 23 tasks. Ready to start?"
@@ -149,14 +149,14 @@ You don't write the PRD. Claude extracts it from what you discussed.
 ### Working on tasks
 
 ```
-You: /claudemem:start
+You: /claudepm:start
 
 Claude: "Starting task: Set up database schema"
         [Loads relevant context from PRD and previous decisions]
 
 [You work on it]
 
-You: /claudemem:done
+You: /claudepm:done
 
 Claude: "Marked complete. Next up: Implement user auth. Continue?"
 ```

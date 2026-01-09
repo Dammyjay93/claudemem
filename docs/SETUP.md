@@ -5,9 +5,9 @@
 In Claude Code:
 
 ```
-/plugin marketplace add Dammyjay93/claudemem
-/plugin install claudemem
-/claudemem:setup
+/plugin marketplace add Dammyjay93/claudepm
+/plugin install claudepm
+/claudepm:setup
 ```
 
 The first command adds the marketplace. The second installs the plugin. The third creates your vault structure and shows configuration steps.
@@ -16,7 +16,7 @@ The first command adds the marketplace. The second installs the plugin. The thir
 
 ## Post-Setup Configuration
 
-After running `/claudemem:setup`, you need to:
+After running `/claudepm:setup`, you need to:
 
 ### 1. Update CLAUDE.md
 
@@ -25,7 +25,7 @@ Add to `~/.claude/CLAUDE.md`:
 ```markdown
 ---
 
-# Memory Protocol (ClaudeMem)
+# Memory Protocol (ClaudePM)
 
 @~/Vault/_manifest.md
 
@@ -89,25 +89,25 @@ mkdir -p ~/Vault/{Projects,Sessions,.schemas}
 ### 2. Copy Files from Repository
 
 ```bash
-git clone https://github.com/Dammyjay93/claudemem.git
-cp claudemem/vault/_manifest.md ~/Vault/
-cp claudemem/vault/.schemas/*.md ~/Vault/.schemas/
+git clone https://github.com/Dammyjay93/claudepm.git
+cp claudepm/vault/_manifest.md ~/Vault/
+cp claudepm/vault/.schemas/*.md ~/Vault/.schemas/
 ```
 
 ### 3. Copy Commands
 
 ```bash
-mkdir -p ~/.claude/commands/claudemem
-cp claudemem/commands/claudemem.md ~/.claude/commands/
-cp claudemem/commands/claudemem/*.md ~/.claude/commands/claudemem/
+mkdir -p ~/.claude/commands/claudepm
+cp claudepm/commands/claudepm.md ~/.claude/commands/
+cp claudepm/commands/claudepm/*.md ~/.claude/commands/claudepm/
 ```
 
 ### 4. Copy Hooks
 
 ```bash
 mkdir -p ~/.claude/hooks
-cp claudemem/hooks/*.sh ~/.claude/hooks/
-cp claudemem/hooks/*.py ~/.claude/hooks/
+cp claudepm/hooks/*.sh ~/.claude/hooks/
+cp claudepm/hooks/*.py ~/.claude/hooks/
 chmod +x ~/.claude/hooks/*.sh
 ```
 
@@ -122,20 +122,20 @@ Update CLAUDE.md and settings.json as described above, but use `~/.claude/hooks/
 Start a new Claude Code session and run:
 
 ```
-/claudemem:status
+/claudepm:status
 ```
 
 You should see:
 
 ```
-CLAUDEMEM
+CLAUDEPM
 
 No active project.
 
 Projects: None yet
 Sessions: None yet
 
-Use /claudemem:plan to create a project from conversation.
+Use /claudepm:plan to create a project from conversation.
 ```
 
 ---

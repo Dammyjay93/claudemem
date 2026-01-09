@@ -4,7 +4,7 @@ allowed-tools: Read, Write, Edit, Glob
 argument-hint: <task-or-project>
 ---
 
-# ClaudeMem Start
+# ClaudePM Start
 
 Begin working on a task or switch to a project.
 
@@ -74,7 +74,7 @@ Did you mean:
 - {suggestion 1}
 - {suggestion 2}
 
-Or use /claudemem plan to create a new project.
+Or use /claudepm plan to create a new project.
 ```
 
 ## Argument
