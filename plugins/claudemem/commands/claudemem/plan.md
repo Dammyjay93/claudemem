@@ -22,13 +22,19 @@ Create a structured project from the conversation.
    - Otherwise derive from project name (kebab-case)
    - Verify no duplicate exists in `~/Vault/Projects/`
 
-3. **Create Project Structure**
+3. **Detect Repository Location**
+   - Check if current working directory contains `.git` → use cwd as repository
+   - If no git repo detected, ask user: "Where is the code for this project? (path or 'none')"
+   - If user says 'none' or project has no code yet → omit repository field
+   - **NEVER guess paths like `/work/{id}`** — always detect or ask
+
+4. **Create Project Structure**
 
 ```bash
 mkdir -p ~/Vault/Projects/{id}/Epics
 ```
 
-4. **Create Files**
+5. **Create Files**
 
 ### _index.md
 ```yaml
@@ -40,6 +46,8 @@ status: active
 priority: P1
 created: {today}
 brief: {1-2 sentence summary}
+repository: {path}  # ONLY include if detected from cwd or provided by user
+stack: [{technologies}]
 ---
 
 # {Project Name}
@@ -158,12 +166,12 @@ created: {today}
 - [ ] {Criterion}
 ```
 
-5. **Update Manifest**
+6. **Update Manifest**
    - Add project to Projects table
    - Set `Last Touched` → new project
    - Update timestamp
 
-6. **Announce Result**
+7. **Announce Result**
 
 ```
 PROJECT CREATED: {Name}
