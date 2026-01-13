@@ -34,11 +34,11 @@
 
 ## Quick Start
 
-```
-/plugin marketplace add Dammyjay93/claudepm
+\`\`\`
+/plugin marketplace add Dammyjay93/oakinleye
 /plugin install claudepm
 /claudepm:setup
-```
+\`\`\`
 
 Restart Claude Code. Your project context will load automatically in future sessions.
 
@@ -47,13 +47,13 @@ Restart Claude Code. Your project context will load automatically in future sess
 ## Key Features
 
 - **Capability Matrix Planning** — Systematically decompose every entity, capability, and state before building. No more discovering missing features mid-implementation
-- **Automatic Project Generation** — Discuss what you want to build, run `/claudepm:plan`, and ClaudePM generates a PRD with organized epics and tasks from your conversation
+- **Automatic Project Generation** — Discuss what you want to build, run \`/claudepm:plan\`, and ClaudePM generates a PRD with organized epics and tasks from your conversation
 - **Session State Persistence** — Claude automatically loads your project context when you start a new session, including current task and recent decisions
-- **Progress Tracking** — Mark tasks complete with `/claudepm:done`, track completion across epics, and always know what's next
-- **Decision Capture** — Technical choices and constraints are stored in structured files (`rules.md`, `_index.md`) and loaded with your project
-- **Multi-Project Support** — Maintain multiple projects simultaneously, each with its own state, and switch between them with `/claudepm:switch`
+- **Progress Tracking** — Mark tasks complete with \`/claudepm:done\`, track completion across epics, and always know what's next
+- **Decision Capture** — Technical choices and constraints are stored in structured files (\`rules.md\`, \`_index.md\`) and loaded with your project
+- **Multi-Project Support** — Maintain multiple projects simultaneously, each with its own state, and switch between them with \`/claudepm:switch\`
 - **Session History** — Every session is logged with summaries, decisions made, and tasks completed for future reference
-- **Local & Portable** — All data lives in `~/Vault/` as plain markdown files. No API keys, no external services, works offline
+- **Local & Portable** — All data lives in \`~/Vault/\` as plain markdown files. No API keys, no external services, works offline
 
 ---
 
@@ -62,17 +62,17 @@ Restart Claude Code. Your project context will load automatically in future sess
 **Workflow:**
 
 1. **Discuss** — Talk through your project with Claude
-2. **Plan** — Run `/claudepm:plan` to generate PRD and project structure
+2. **Plan** — Run \`/claudepm:plan\` to generate PRD and project structure
 3. **Decompose** — Build a capability matrix covering every entity, action, and edge case
 4. **Derive** — Generate epics and tasks from the matrix (nothing invented, everything traced)
-5. **Work** — Start tasks with `/claudepm:start`, Claude loads relevant context automatically
-6. **Track** — Mark tasks complete with `/claudepm:done`, progress updates across files
-7. **Save** — Run `/claudepm:save` to log what happened before ending your session
+5. **Work** — Start tasks with \`/claudepm:start\`, Claude loads relevant context automatically
+6. **Track** — Mark tasks complete with \`/claudepm:done\`, progress updates across files
+7. **Save** — Run \`/claudepm:save\` to log what happened before ending your session
 8. **Resume** — Next session, Claude loads your project state and picks up where you left off
 
 **Architecture:**
 
-```
+\`\`\`
 ~/Vault/
 ├── _manifest.md              # Project registry + last-touched state
 ├── Projects/
@@ -85,24 +85,24 @@ Restart Claude Code. Your project context will load automatically in future sess
 │           └── 01-foundation.md  # Tasks derived from matrix
 └── Sessions/
     └── 2026-01-08.md         # Session log
-```
+\`\`\`
 
 **Planning Documents:**
 
 | Document | Purpose | When to Update |
 |----------|---------|----------------|
-| `PRD.md` | What and why (high-level) | After major scope changes |
-| `capability-matrix.md` | Every capability, state, edge case | Complete before building |
-| `rules.md` | Enforced constraints | Update in place as decisions are made |
+| \`PRD.md\` | What and why (high-level) | After major scope changes |
+| \`capability-matrix.md\` | Every capability, state, edge case | Complete before building |
+| \`rules.md\` | Enforced constraints | Update in place as decisions are made |
 
 **Components:**
 
-1. **Manifest Registry** — `_manifest.md` tracks all projects and hints at which was last touched
+1. **Manifest Registry** — \`_manifest.md\` tracks all projects and hints at which was last touched
 2. **Capability Matrix** — Exhaustive decomposition: Entity → Capabilities → States → Edge Cases
-3. **Project Index** — Each project's `_index.md` holds current state, active stances, and key decisions
+3. **Project Index** — Each project's \`_index.md\` holds current state, active stances, and key decisions
 4. **Epic Files** — Tasks derived from capability matrix with acceptance criteria
 5. **Session Logs** — Daily files capturing what happened for audit and context
-6. **Smart Dispatcher** — `/claudepm` reads context and determines what action you need
+6. **Smart Dispatcher** — \`/claudepm\` reads context and determines what action you need
 
 ---
 
@@ -110,14 +110,14 @@ Restart Claude Code. Your project context will load automatically in future sess
 
 | Command | Description |
 |---------|-------------|
-| `/claudepm` | Smart dispatcher — reads context and suggests appropriate action |
-| `/claudepm:setup` | Initialize vault structure at `~/Vault/` |
-| `/claudepm:plan` | Generate PRD, epics, and tasks from current conversation |
-| `/claudepm:start` | Begin working on next task, loads relevant context |
-| `/claudepm:done` | Mark current task complete, updates progress, suggests next |
-| `/claudepm:save` | Write session notes with summary and decisions |
-| `/claudepm:status` | Display current project, epic, task, and blockers |
-| `/claudepm:switch` | Change to a different project |
+| \`/claudepm\` | Smart dispatcher — reads context and suggests appropriate action |
+| \`/claudepm:setup\` | Initialize vault structure at \`~/Vault/\` |
+| \`/claudepm:plan\` | Generate PRD, epics, and tasks from current conversation |
+| \`/claudepm:start\` | Begin working on next task, loads relevant context |
+| \`/claudepm:done\` | Mark current task complete, updates progress, suggests next |
+| \`/claudepm:save\` | Write session notes with summary and decisions |
+| \`/claudepm:status\` | Display current project, epic, task, and blockers |
+| \`/claudepm:switch\` | Change to a different project |
 
 ---
 
@@ -153,11 +153,19 @@ Restart Claude Code. Your project context will load automatically in future sess
 
 ## Updating
 
-```
-/plugin marketplace update claudepm-marketplace
-```
+\`\`\`
+/plugin marketplace update oakinleye
+\`\`\`
 
-Restart Claude Code after updating to apply changes.
+Restart Claude Code after updating.
+
+---
+
+## Related
+
+Part of the [oakinleye](https://github.com/Dammyjay93/oakinleye) plugin collection.
+
+See also: [design-engineer](https://github.com/Dammyjay93/design-engineer) — Design engineering for Claude Code.
 
 ---
 
