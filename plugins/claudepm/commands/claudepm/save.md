@@ -5,88 +5,158 @@ allowed-tools: Read, Write, Edit, Bash
 
 # ClaudePM Save
 
-**EXHAUSTIVE SAVES REQUIRED** - Every save must touch ALL relevant files.
+## CRITICAL: Exhaustive Saves Are Mandatory
+
+Every `/claudepm:save` MUST update ALL of the following files. No shortcuts. No partial saves.
 
 **Multi-session safe**: Updates your project's files. Other sessions' states are unaffected.
 
+## Required Files Checklist
+
+Before announcing save completion, verify EVERY item:
+
+- [ ] `~/Vault/_manifest.md` - Active context, last_active date, Recent Sessions table
+- [ ] `~/Vault/Projects/{id}/_index.md` - Current State, Key Decisions, updated timestamp
+- [ ] `~/Vault/Projects/{id}/Epics/{active}.md` - Task checkboxes, status, approach
+- [ ] `~/Vault/Projects/{id}/rules.md` - If new constraints established
+- [ ] `~/Vault/Sessions/{YYYY-MM-DD}-{project}.md` - Detailed session notes
+
 ## Steps
 
-1. **Gather Session Data**
-   - Read `~/Vault/_manifest.md` for Last Touched project
-   - Read project's `_index.md` for current state
-   - Read project's `rules.md` for current constraints
-   - Read active epic file for current tasks
-   - Review conversation for:
-     - What was built/changed
-     - Decisions made (and what type)
-     - Tasks completed
-     - What's next
+### 1. Gather Session Data
 
-2. **Update Project Index** (`~/Vault/Projects/{id}/_index.md`)
-   - Update **Current State** section (active epic/task, last completed)
-   - Update **Epic progress counts** (e.g., "8/15 tasks")
-   - Update **Active Stances** table if any stances changed
-   - Update **Key Decisions** table if a major decision was made
-     - Key Decisions are CURATED (max ~10), not appended
-     - Remove outdated ones, add significant new ones
+Read ALL of these files first:
+- `~/Vault/_manifest.md` - Current active context
+- `~/Vault/Projects/{id}/_index.md` - Project state
+- `~/Vault/Projects/{id}/rules.md` - Current constraints
+- `~/Vault/Projects/{id}/Epics/{active}.md` - Active epic tasks
 
-3. **Update Epic File** (`~/Vault/Projects/{id}/Epics/{active}.md`)
-   - Check off ALL completed tasks with [x]
-   - Update task statuses (#done, #in-progress)
-   - Check off completed acceptance criteria
-   - Update **Approach** section with epic-scoped decisions
-   - Update epic status if changed (pending → in-progress → done)
+Then review conversation for:
+- What was built/changed/explored
+- Decisions made (and their type - see Decision Routing)
+- Tasks completed
+- Files created or modified
+- What's next
 
-4. **Update Rules if Needed** (`~/Vault/Projects/{id}/rules.md`)
-   - If a new enforced constraint was established → add to appropriate section
-   - If an existing rule changed → update in place
-   - Rules are update-in-place, NEVER append-only
-   - Sections: Product, UI, Engineering
+### 2. Update Project Index
 
-5. **Create Session File** (`~/Vault/Sessions/{YYYY-MM-DD}-{project}.md`)
+**File**: `~/Vault/Projects/{id}/_index.md`
+
+Required updates:
+- `updated:` frontmatter date → today's date
+- **Current State** section:
+  - Last Session → brief description with date
+  - Blockers → any new blockers
+  - Next → what should happen next
+  - Pending Work → if multiple tracks exist
+- **Key Decisions** table → add if major decision made (keep curated to ~10)
+- **Active Stances** table → update if stance changed
+- **Epic progress** → update task counts if applicable
+
+### 3. Update Epic File
+
+**File**: `~/Vault/Projects/{id}/Epics/{active}.md`
+
+Required updates:
+- Check off completed tasks with `[x]`
+- Update task statuses (`#done`, `#in-progress`)
+- Check off completed acceptance criteria
+- Update **Approach** section with epic-scoped decisions
+- Update epic `status:` frontmatter if changed (planned → in-progress → done)
+
+### 4. Update Rules (If Needed)
+
+**File**: `~/Vault/Projects/{id}/rules.md`
+
+Only update if:
+- A new enforced constraint was established
+- An existing rule changed
+
+Rules are update-in-place, NEVER append-only.
+
+### 5. Create Session File
+
+**File**: `~/Vault/Sessions/{YYYY-MM-DD}-{project}.md`
+
+Session files must be DETAILED, not summaries. Include:
 
 ```yaml
 ---
 type: session
 date: {YYYY-MM-DD}
 project: {project id}
+subproject: {if applicable, e.g., "mobile", "admin"}
 ---
 
-# Session: {Project Name}
+# Session: {Project Name} - {Brief Topic}
 
 ## Summary
-{2-3 sentence summary}
+{2-3 sentence overview of what happened this session}
 
-## Completed
-- {Task completed}
-- {Another completed item}
+## Context
+{Why this work was started, what triggered it}
+
+## Exploration/Work Done
+{Detailed description of what was explored, built, or changed}
+{Include specific findings, numbers, file paths}
 
 ## Decisions
-- **{Topic}**: {Decision and brief rationale}
+- **{Topic}**: {Decision and rationale}
+- **{Topic}**: {Decision and rationale}
+
+## Status
+- [x] {Completed item}
+- [x] {Completed item}
+- [ ] {Pending item}
+
+## Key Files
+- `{path}` - {purpose}
+- `{path}` - {purpose}
 
 ## Next Steps
-- {First priority}
-- {Second priority}
+1. {First priority with specific action}
+2. {Second priority}
+3. {Third priority}
 ```
 
-6. **Update Manifest** (`~/Vault/_manifest.md`)
-   - Update project's `last_active` date in Projects table
-   - Update `Last Touched` to current project
+### 6. Update Manifest
 
-7. **Announce**
+**File**: `~/Vault/_manifest.md`
+
+Required updates:
+- `## Active Context` → set to current project/epic/task
+- Projects table → update `last_active` date for this project
+- Recent Sessions table → add new row at TOP with today's summary
+
+### 7. Announce (Exhaustive Format)
 
 ```
-SESSION SAVED
+SESSION SAVED (EXHAUSTIVE)
 
-Project: {name}
-Completed: {n} tasks
-Rules updated: {yes/no}
+Project: {name} ({subproject if applicable})
+Session: {brief topic}
+
+Files Updated:
+  ~/Vault/_manifest.md
+    - {specific change}
+    - {specific change}
+
+  ~/Vault/Projects/{id}/_index.md
+    - {specific change}
+    - {specific change}
+
+  ~/Vault/Projects/{id}/Epics/{epic}.md
+    - {specific change} (or "No changes - work not in this epic")
+
+  ~/Vault/Sessions/{date}-{project}.md (created)
+    - {key sections included}
+
+Rules: {Updated | No changes}
+
 Next: {first next step}
 ```
 
 ## Decision Routing
-
-When saving, route decisions to the right place:
 
 | Decision type | Where it goes | Growth pattern |
 |---------------|---------------|----------------|
@@ -96,12 +166,19 @@ When saving, route decisions to the right place:
 | Epic-specific approach | Epic file Approach section | Lives with epic |
 | Context/rationale | Session notes | Accumulates naturally |
 
-**Key principle**: Rules and stances are bounded. History lives in session files.
-
 ## Auto-Save Triggers
 
-Consider saving when:
+Save when:
 - User says "done for today" / "stopping" / "save"
 - Switching to a different project
 - Before `/claudepm switch`
 - Significant milestone reached
+- User explicitly requests save
+
+## Common Mistakes to Avoid
+
+1. **Skipping manifest updates** - Always update Active Context and Recent Sessions
+2. **Minimal session files** - Session files are historical record, be detailed
+3. **Forgetting frontmatter dates** - Update `updated:` in _index.md
+4. **Not updating last_active** - Projects table needs today's date
+5. **Announcing before completing** - Verify ALL files updated before announcing

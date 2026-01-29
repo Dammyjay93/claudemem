@@ -16,13 +16,16 @@ Switch active context to a different project.
    - Read `~/Vault/_manifest.md` for Last Touched
    - Read current project's `_index.md` if it exists
 
-2. **Offer to Save** (optional)
-   If there's been significant work in this session:
+2. **Save Before Switching** (REQUIRED if work was done)
+   If there's been ANY work in this session, perform an EXHAUSTIVE save first:
+   - Update manifest, _index.md, epic file, create session file
+   - Follow the full `/claudepm:save` protocol
+   - Then announce:
    ```
-   You have work in progress on {current project}.
+   SESSION SAVED for {current project} before switching.
+   ```
 
-   Save session notes before switching? (y/n)
-   ```
+   If no work was done, skip this step.
 
 3. **Find Target Project**
    - Parse argument: `$ARGUMENTS`

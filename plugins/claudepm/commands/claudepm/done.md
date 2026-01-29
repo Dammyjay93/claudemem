@@ -87,3 +87,10 @@ Summary:
 
 Use /claudepm save to write final session notes.
 ```
+
+## Automatic Save Trigger
+
+After marking a task complete, consider whether an exhaustive save is warranted:
+- If this was significant work → run `/claudepm:save` automatically
+- Task completion is a natural save checkpoint
+- Don't wait for user to ask - preserve the work

@@ -57,7 +57,7 @@ Route to appropriate action:
 - `plan` → Create project from recent conversation
 - `start {task}` → Mark task in-progress
 - `done` → Mark current task complete
-- `save` → Write session notes
+- `save` → **EXHAUSTIVE** session save (ALL files: manifest, index, epic, session)
 - `switch {project}` → Change active project
 
 ## Output Format
